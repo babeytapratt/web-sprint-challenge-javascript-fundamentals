@@ -71,32 +71,21 @@ console.log(populationTotal);
   * The last parameter accepts a callback
   * The consume function should return the invocation of cb, passing a and b into cb as arguments
 */
-function consume(a, b, cb){
-  return cb(a, b);
+function consume(number1, number2, cb){
+  const result = cb(number1, number2);
 }
 
-function playWithToys(a, b) {
-  return `I like to play with a ${a} and I don't like to ride a ${b}`;
-}
-
-function flying(a,b) {
-  return `I like to fly in a ${a} and I don't like to ride on a ${b}`;
-}
-
-console.log(consume('plane', 'bicycle', playWithToys));
-console.log(consume('plane', 'bicycle', flying));
-
-
+console.log("The result is: ": + result);
 
 /* Step 2: Create several functions to callback with consume();
   * Create a function named add that returns the sum of two numbers
   * Create a function named multiply that returns the product of two numbers
   * Create a function named greeting that accepts a first and last name and returns "Hello first-name last-name, nice to meet you!"
 */
-function add(consume, number) {
-  return consume(number);
-}
-
+consume(function(number1, number2){
+  const calculation = number1 + number2;
+  return calculation
+});
 
 
 /* Step 3: Check your work by un-commenting the following calls to consume(): */
