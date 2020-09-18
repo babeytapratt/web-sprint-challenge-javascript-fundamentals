@@ -33,7 +33,7 @@ The zoos need a list of all their animal's names (animal_name only) converted to
 
 */
 const lowCaseAnimalNames = zooAnimals.map(function(item){
-  return `${item.animal_name}`
+  return item.animal_name.toLocaleLowerCase();
 });
 
 console.log(lowCaseAnimalNames);
@@ -44,10 +44,8 @@ The zoos are concerned about animals with a lower population count. Using filter
 
 */
 const lowPopulationAnimals = zooAnimals.filter(function(item){
-  return item.animal_name.population < 5;
+  return item.population < 5;
 })
-
-
 
 console.log(lowPopulationAnimals);
 
@@ -56,8 +54,13 @@ console.log(lowPopulationAnimals);
 The zoos need to know their total animal population across the United States. Find the total population from all the zoos using the .reduce() method. Remember the reduce method takes two arguments: a callback (which itself takes two args), and an initial value for the count.
 
 */
-// let populationTotal = 0;
-// console.log(populationTotal);
+const populationTotal = zooAnimals.reduce(function(accumulator, item){
+    return accumulator + item['population'];
+},0)
+
+
+
+console.log(populationTotal);
 
 
 // ==== Callbacks ====
@@ -68,6 +71,21 @@ The zoos need to know their total animal population across the United States. Fi
   * The last parameter accepts a callback
   * The consume function should return the invocation of cb, passing a and b into cb as arguments
 */
+function consume(a, b, cb){
+  return cb(a, b);
+}
+
+function playWithToys(a, b) {
+  return `I like to play with a ${a} and I don't like to ride a ${b}`;
+}
+
+function flying(a,b) {
+  return `I like to fly in a ${a} and I don't like to ride on a ${b}`;
+}
+
+console.log(consume('plane', 'bicycle', playWithToys));
+console.log(consume('plane', 'bicycle', flying));
+
 
 
 /* Step 2: Create several functions to callback with consume();
@@ -75,6 +93,10 @@ The zoos need to know their total animal population across the United States. Fi
   * Create a function named multiply that returns the product of two numbers
   * Create a function named greeting that accepts a first and last name and returns "Hello first-name last-name, nice to meet you!"
 */
+function add(consume, number) {
+  return consume(number);
+}
+
 
 
 /* Step 3: Check your work by un-commenting the following calls to consume(): */
